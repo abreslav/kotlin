@@ -80,6 +80,11 @@ public class InjectorGenerator {
         String injectorClassName = "Injector";
 
         String targetSourceRoot = "compiler/frontend/src";
+
+        generate(targetSourceRoot, injectorPackageName, injectorClassName);
+    }
+
+    private static void generate(String targetSourceRoot, String injectorPackageName, String injectorClassName) throws IOException {
         String outputFileName = targetSourceRoot + "/" + injectorPackageName.replace(".", "/") + "/" + injectorClassName + ".java";
 
         PrintStream out = new PrintStream(new FileOutputStream(outputFileName));
@@ -106,8 +111,8 @@ public class InjectorGenerator {
             generateConstructor(injectorClassName, out);
             out.println();
             generateGetters(out);
-            out.println();
-            generateMakeFunction(out);
+//            out.println();
+//            generateMakeFunction(out);
             out.println("}"); // class
         }
         finally {

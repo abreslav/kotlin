@@ -16,8 +16,8 @@
 
 package org.jetbrains.jet.lang.resolve;
 
-import com.google.inject.Inject;
 import org.jetbrains.annotations.NotNull;
+import javax.inject.Inject;
 import org.jetbrains.jet.lang.descriptors.*;
 import org.jetbrains.jet.lang.psi.*;
 import org.jetbrains.jet.lang.types.JetType;

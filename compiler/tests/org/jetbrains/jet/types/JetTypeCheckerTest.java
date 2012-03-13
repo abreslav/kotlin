@@ -17,14 +17,13 @@
 package org.jetbrains.jet.types;
 
 import com.google.common.collect.Sets;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.jet.JetLiteFixture;
 import org.jetbrains.jet.JetTestCaseBuilder;
 import org.jetbrains.jet.JetTestUtils;
+import org.jetbrains.jet.di.Injector;
 import org.jetbrains.jet.lang.descriptors.*;
 import org.jetbrains.jet.lang.descriptors.annotations.AnnotationDescriptor;
 import org.jetbrains.jet.lang.psi.*;
@@ -68,15 +67,10 @@ public class JetTypeCheckerTest extends JetLiteFixture {
         library          = JetStandardLibrary.getInstance();
         classDefinitions = new ClassDefinitions();
 
-        Injector injector = Guice.createInjector(new TopDownAnalysisModule(getProject(), false) {
-            @Override
-            protected void configureAfter() {
-            }
-        });
-        descriptorResolver = injector.getInstance(DescriptorResolver.class);
-        descriptorResolver = injector.getInstance(DescriptorResolver.class);
-        typeResolver = injector.getInstance(TypeResolver.class);
-        expressionTypingServices = injector.getInstance(ExpressionTypingServices.class);
+        Injector injector = new Injector(getProject(), null, null, null, false);
+        descriptorResolver = injector.getDescriptorResolver();
+        typeResolver = injector.getTypeResolver();
+        expressionTypingServices = injector.getExpressionTypingServices();
 
         scopeWithImports = addImports(classDefinitions.BASIC_SCOPE);
     }

@@ -19,11 +19,11 @@ package org.jetbrains.jet.lang.resolve;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
-import com.google.inject.Inject;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNameIdentifierOwner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import javax.inject.Inject;
 import org.jetbrains.jet.lang.ModuleConfiguration;
 import org.jetbrains.jet.lang.descriptors.*;
 import org.jetbrains.jet.lang.descriptors.annotations.AnnotationDescriptor;
@@ -60,7 +60,6 @@ public class TypeHierarchyResolver {
 
     // state
     private LinkedList<MutableClassDescriptor> topologicalOrder;
-
 
     @Inject
     public void setContext(@NotNull TopDownAnalysisContext context) {
